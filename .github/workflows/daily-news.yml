@@ -23,9 +23,9 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Generate News with DeepSeek
+      - name: Generate News with Groq
         env:
-          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: node scripts/generate-news.js
 
       - name: Commit and Push Changes

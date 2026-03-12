@@ -4,10 +4,10 @@ const path = require("path");
 const slugify = require("slugify");
 const matter = require("gray-matter");
 
-// Initialize DeepSeek (OpenAI compatible)
-const openai = new OpenAI({
-  apiKey: process.env.DEEPSEEK_API_KEY,
-  baseURL: "https://api.deepseek.com",
+// Initialize Groq (OpenAI compatible)
+const groq = new OpenAI({
+  apiKey: process.env.GROQ_API_KEY,
+  baseURL: "https://api.groq.com/openai/v1",
 });
 
 async function generateNews() {
@@ -29,10 +29,10 @@ async function generateNews() {
   `;
 
   try {
-    const response = await openai.chat.completions.create({
-      model: "deepseek-chat",
+    const response = await groq.chat.completions.create({
+      model: "llama-3.3-70b-versatile",
       messages: [
-        { role: "system", content: "És um jornalista desportivo que escreve apenas em JSON." },
+        { role: "system", content: "És um jornalista desportivo que só responde em JSON válido." },
         { role: "user", content: prompt },
       ],
       response_format: { type: 'json_object' }
@@ -57,10 +57,10 @@ async function generateNews() {
     });
 
     fs.writeFileSync(path.join(postsDir, fileName), fileContent);
-    console.log(`Successfully generated with DeepSeek: ${fileName}`);
+    console.log(`Successfully generated with Groq (Free): ${fileName}`);
     
   } catch (error) {
-    console.error("Error generating news with DeepSeek:", error);
+    console.error("Error generating news with Groq:", error);
     process.exit(1);
   }
 }
