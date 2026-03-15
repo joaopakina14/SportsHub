@@ -78,7 +78,7 @@ async function generateNews() {
     4. NÃO inventes resultados ou nomes. Se a informação não estiver no título, foca-te na análise do que é público.
     5. Devolve o resultado estritamente em formato JSON com os seguintes campos:
        - title: Título SEO baseado no facto real.
-       - category: Categoria (ex: Futebol, Modalidades).
+       - category: OBRIGATÓRIO escolher APENAS UMA destas opções exatas: "Primeira Liga", "LaLiga", "Premier League", "Ligue 1", "Serie A", "Bundesliga", "Andebol", "Futsal", "Voleibol", "Basquetebol", "F1", "MotoGP", ou "Geral".
        - excerpt: Resumo factual de 2 frases.
        - content: Corpo da notícia em MDX.
        - keywords: 5-10 palavras-chave reais.

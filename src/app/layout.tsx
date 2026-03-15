@@ -46,10 +46,34 @@ export default function RootLayout({
       </head>
       <body>
         <header>
-          <div className="logo">SPORTSHUB</div>
-          <nav>
-            {/* Nav links could go here */}
-          </nav>
+          <div className="header-container">
+            <a href="/" className="logo">SPORTSHUB</a>
+            <nav className="main-nav">
+              <a href="/">Geral</a>
+              <div className="nav-dropdown">
+                <button className="dropbtn">Futebol (Big 5 + PT) ▾</button>
+                <div className="dropdown-content">
+                  <a href="/category/primeira-liga">Portugal - Primeira Liga</a>
+                  <a href="/category/laliga">Espanha - LaLiga</a>
+                  <a href="/category/premier-league">Inglaterra - Premier League</a>
+                  <a href="/category/ligue-1">França - Ligue 1</a>
+                  <a href="/category/serie-a">Itália - Serie A</a>
+                  <a href="/category/bundesliga">Alemanha - Bundesliga</a>
+                </div>
+              </div>
+              <div className="nav-dropdown">
+                <button className="dropbtn">Outros Desportos ▾</button>
+                <div className="dropdown-content">
+                  <a href="/category/andebol">Andebol</a>
+                  <a href="/category/futsal">Futsal</a>
+                  <a href="/category/voleibol">Voleibol</a>
+                  <a href="/category/basquetebol">Basquetebol</a>
+                  <a href="/category/f1">F1</a>
+                  <a href="/category/motogp">MotoGP</a>
+                </div>
+              </div>
+            </nav>
+          </div>
         </header>
         {children}
         <footer>
