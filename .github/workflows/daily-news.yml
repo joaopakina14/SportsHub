@@ -26,6 +26,7 @@ jobs:
       - name: Generate News with Groq
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          UNSPLASH_API_KEY: ${{ secrets.UNSPLASH_API_KEY }}
         run: node scripts/generate-news.js
 
       - name: Commit and Push Changes
