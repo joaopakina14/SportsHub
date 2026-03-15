@@ -18,8 +18,8 @@ async function getRealNews() {
     // Google News RSS targeting specifically A Bola, O Jogo, and Record
     const feed = await parser.parseURL('https://news.google.com/rss/search?q=site:abola.pt+OR+site:ojogo.pt+OR+site:record.pt+futebol&hl=pt-PT&gl=PT&ceid=PT:pt');
     
-    // Get the top 5 headlines to give context to the AI
-    const headlines = feed.items.slice(0, 5).map(item => ({
+    // Get the top 15 headlines to give context to the AI (giving more options)
+    const headlines = feed.items.slice(0, 15).map(item => ({
       title: item.title,
       link: item.link,
       pubDate: item.pubDate
@@ -40,20 +40,43 @@ async function generateNews() {
     return;
   }
 
+  // Ler os arquivos já gerados para não repetir notícias
+  const postsDir = path.join(__dirname, "../src/content/posts");
+  let existingTitles = [];
+  if (fs.existsSync(postsDir)) {
+    const files = fs.readdirSync(postsDir)
+      .filter(f => f.endsWith('.mdx'))
+      .sort()
+      .reverse()
+      .slice(0, 6); // Ver as últimas 6 notícias
+    
+    for (const file of files) {
+      const fileContent = fs.readFileSync(path.join(postsDir, file), 'utf-8');
+      const { data } = matter(fileContent);
+      if (data && data.title) {
+        existingTitles.push(data.title);
+      }
+    }
+  }
+
   const context = realHeadlines.map(h => `- ${h.title}`).join('\n');
+  const recentArticlesContext = existingTitles.length > 0 
+    ? `\n\nARTIGOS JÁ PUBLICADOS RECENTEMENTE (PROIBIDO FALAR SOBRE ESTES TEMAS):\n${existingTitles.map(t => `- ${t}`).join('\n')}` 
+    : '';
 
   const prompt = `
     És um jornalista desportivo de elite para o portal "SportsHub".
     O teu objetivo é escrever a notícia mais importante do momento baseada em factos REAIS.
     
     FACTOS REAIS DO MOMENTO (Extraídos do Google News):
-    ${context}
+    ${context}${recentArticlesContext}
     
     Instruções:
-    1. Escolhe a notícia mais relevante da lista acima.
-    2. Escreve uma notícia completa, profissional e factual em Português de Portugal.
-    3. NÃO inventes resultados ou nomes. Se a informação não estiver no título, foca-te na análise do que é público.
-    4. Devolve o resultado estritamente em formato JSON com os seguintes campos:
+    1. Escolhe UMA notícia relevante da lista de "FACTOS REAIS DO MOMENTO" acima.
+    2. REGRA DE OURO: NÃO podes escolher um tema que seja igual ou sequer semelhante aos que estão na lista "ARTIGOS JÁ PUBLICADOS RECENTEMENTE". Se todos os de cima forem parecidos, escolhe um dos factos mais abaixo na lista.
+    3. Escreve uma notícia completa, profissional e factual em Português de Portugal.
+    4. NÃO inventes resultados ou nomes. Se a informação não estiver no título, foca-te na análise do que é público.
+    5. Devolve o resultado estritamente em formato JSON com os seguintes campos:
        - title: Título SEO baseado no facto real.
        - category: Categoria (ex: Futebol, Modalidades).
        - excerpt: Resumo factual de 2 frases.
