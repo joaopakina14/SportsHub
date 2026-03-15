@@ -79,7 +79,7 @@ async function generateNews() {
     5. Devolve o resultado estritamente em formato JSON com os seguintes campos:
        - title: Título SEO baseado no facto real.
        - category: OBRIGATÓRIO escolher APENAS UMA destas opções exatas: "Primeira Liga", "LaLiga", "Premier League", "Ligue 1", "Serie A", "Bundesliga", "Andebol", "Futsal", "Voleibol", "Basquetebol", "F1", "MotoGP", ou "Geral".
-       - image_search: Gera 1 a 3 palavras em INGLÊS que descrevam visualmente o contexto da notícia. REGRA VITAL: NUNCA uses nomes próprios de equipas ou pessoas (ex: NÃO uses Porto, Sporting, Ronaldo). Usa apenas conceitos visuais universais e genéricos desportivos (ex: "soccer ball stadium", "basketball hoop", "fans celebration green", "referee whistle").
+       - image_search: Gera 1 a 3 palavras em INGLÊS que descrevam visualmente a notícia para um banco de imagens. REGRA VITAL 1: NUNCA uses nomes próprios (Porto, Sporting, Ronaldo). REGRA VITAL 2: A PRIMEIRA palavra TEM DE SER o nome do desporto em inglês (ex: "soccer", "basketball"). REGRA VITAL 3: Se a notícia for sobre algo abstrato (como eleições, contratos, finanças ou tribunais), NÃO uses essas palavras abstratas; pesquisa simplesmente pelo nome do desporto e um conceito físico seguro (ex: se é sobre reeleição no futebol, usa "soccer stadium" ou "soccer manager", NÃO uses "election" ou "vote").
        - excerpt: Resumo factual de 2 frases.
        - content: Corpo da notícia em MDX.
        - keywords: Array de strings com 5-10 palavras-chave reais (ex: ["futebol", "benfica", "liga"]).
