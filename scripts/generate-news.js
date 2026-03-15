@@ -82,7 +82,7 @@ async function generateNews() {
        - image_search: Gera 1 a 3 palavras em INGLÊS que descrevam visualmente o contexto da notícia. REGRA VITAL: NUNCA uses nomes próprios de equipas ou pessoas (ex: NÃO uses Porto, Sporting, Ronaldo). Usa apenas conceitos visuais universais e genéricos desportivos (ex: "soccer ball stadium", "basketball hoop", "fans celebration green", "referee whistle").
        - excerpt: Resumo factual de 2 frases.
        - content: Corpo da notícia em MDX.
-       - keywords: 5-10 palavras-chave reais.
+       - keywords: Array de strings com 5-10 palavras-chave reais (ex: ["futebol", "benfica", "liga"]).
   `;
 
   try {
