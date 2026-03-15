@@ -15,8 +15,8 @@ const groq = new OpenAI({
 
 async function getRealNews() {
   try {
-    // Google News RSS for Portuguese Sports
-    const feed = await parser.parseURL('https://news.google.com/rss/search?q=desporto+portugal+futebol&hl=pt-PT&gl=PT&ceid=PT:pt');
+    // Google News RSS targeting specifically A Bola, O Jogo, and Record
+    const feed = await parser.parseURL('https://news.google.com/rss/search?q=site:abola.pt+OR+site:ojogo.pt+OR+site:record.pt+futebol&hl=pt-PT&gl=PT&ceid=PT:pt');
     
     // Get the top 5 headlines to give context to the AI
     const headlines = feed.items.slice(0, 5).map(item => ({
