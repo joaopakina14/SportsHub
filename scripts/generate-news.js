@@ -74,7 +74,7 @@ async function generateNews() {
     Instruções:
     1. Escolhe UMA notícia relevante da lista de "FACTOS REAIS DO MOMENTO" acima.
     2. REGRA DE OURO: NÃO podes escolher um tema que seja igual ou sequer semelhante aos que estão na lista "ARTIGOS JÁ PUBLICADOS RECENTEMENTE". Se todos os de cima forem parecidos, escolhe um dos factos mais abaixo na lista.
-    3. Escreve uma notícia completa, profissional e factual em Português de Portugal.
+    3. Escreve uma notícia completa e factual em Português de Portugal. É MUITO IMPORTANTE que uses as tuas próprias palavras. Reescreve a informação de forma original, criativa e num tom de jornalismo desportivo cativante. NÃO copies as frases da fonte original - cria um texto 100% único.
     4. NÃO inventes resultados ou nomes. Se a informação não estiver no título, foca-te na análise do que é público.
     5. Devolve o resultado estritamente em formato JSON com os seguintes campos:
        - title: Título SEO baseado no facto real.
