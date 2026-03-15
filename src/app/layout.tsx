@@ -1,11 +1,16 @@
 import type { Metadata } from 'next'
 import './globals.css'
 
+import Script from 'next/script'
+
 export const metadata: Metadata = {
-  title: 'SportsHub | As Melhores Notícias Desportivas do Mundo',
+  title: {
+    default: 'SportsHub | As Melhores Notícias Desportivas do Mundo',
+    template: '%s | SportsHub'
+  },
   description: 'O seu portal número um para notícias desportivas de última hora, análises profundas e resultados em direto. Gerado por IA avançada para cobertura total.',
   keywords: ['desporto', 'notícias desportivas', 'futebol', 'basquetebol', 'ténis', 'gemini ai', 'blog desporto'],
-  authors: [{ name: 'SportsHub Team' }],
+  authors: [{ name: 'SportsHub AI' }],
   metadataBase: new URL('https://sportshub-news.vercel.app'), // Placeholder URL
   openGraph: {
     title: 'SportsHub | Notícias Desportivas em Tempo Real',
@@ -39,10 +44,23 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    'name': 'SportsHub',
+    'url': 'https://sportshub-news.vercel.app',
+    'logo': 'https://sportshub-news.vercel.app/logo.png',
+  };
+
   return (
     <html lang="pt">
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
+        <Script
+          id="org-structured-data"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body>
         <header>
