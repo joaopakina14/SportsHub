@@ -56,9 +56,18 @@ export default function PostPage({ params }: Props) {
             {post.category}
           </span>
           <h1 style={{ marginTop: '1rem', fontSize: '3rem' }}>{post.title}</h1>
-          <div style={{ color: 'var(--text-muted)', marginTop: '1rem' }}>
+          <div style={{ color: 'var(--text-muted)', marginTop: '1rem', marginBottom: '2rem' }}>
             Publicado em {formattedDate} por SportsHub AI
           </div>
+          {post.image && (
+            <div style={{ width: '100%', aspectRatio: '16/9', borderRadius: '16px', overflow: 'hidden', marginBottom: '2rem' }}>
+              <img 
+                src={post.image} 
+                alt={`Imagem sobre ${post.title}`} 
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+              />
+            </div>
+          )}
         </header>
 
         <div className="article-content" style={{ lineHeight: '1.8', fontSize: '1.1rem' }}>
