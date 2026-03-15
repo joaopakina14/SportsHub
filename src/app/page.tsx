@@ -42,7 +42,7 @@ function ArticleCard({ post }: { post: PostData }) {
   return (
     <Link href={`/news/${post.slug}`}>
       <article className="news-card">
-        <div className="card-image"></div>
+        <div className="card-image" style={{ backgroundImage: post.image ? `url(${post.image})` : '' }}></div>
         <div className="card-content">
           <span className="card-meta">{post.category} • {formattedDate}</span>
           <h3 className="card-title">{post.title}</h3>

@@ -79,6 +79,7 @@ async function generateNews() {
     5. Devolve o resultado estritamente em formato JSON com os seguintes campos:
        - title: Título SEO baseado no facto real.
        - category: OBRIGATÓRIO escolher APENAS UMA destas opções exatas: "Primeira Liga", "LaLiga", "Premier League", "Ligue 1", "Serie A", "Bundesliga", "Andebol", "Futsal", "Voleibol", "Basquetebol", "F1", "MotoGP", ou "Geral".
+       - image_search: Gera 1 a 3 palavras em INGLÊS que descrevam visualmente o contexto da notícia. REGRA VITAL: NUNCA uses nomes próprios de equipas ou pessoas (ex: NÃO uses Porto, Sporting, Ronaldo). Usa apenas conceitos visuais universais e genéricos desportivos (ex: "soccer ball stadium", "basketball hoop", "fans celebration green", "referee whistle").
        - excerpt: Resumo factual de 2 frases.
        - content: Corpo da notícia em MDX.
        - keywords: 5-10 palavras-chave reais.
@@ -96,6 +97,23 @@ async function generateNews() {
 
     const data = JSON.parse(response.choices[0].message.content);
     
+    // Obter imagem perfeita do banco de imagens (Unsplash)
+    let imageUrl = "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=1080&auto=format&fit=crop"; // Fallback: Relvado genérico
+    if (process.env.UNSPLASH_API_KEY && data.image_search) {
+      try {
+        console.log(`Searching Unsplash for: ${data.image_search}`);
+        const unsplashRes = await fetch(`https://api.unsplash.com/photos/random?query=${encodeURIComponent(data.image_search)}&orientation=landscape&client_id=${process.env.UNSPLASH_API_KEY}`);
+        if (unsplashRes.ok) {
+          const unsplashData = await unsplashRes.json();
+          imageUrl = unsplashData.urls.regular;
+        } else {
+          console.log("Unsplash fail, using fallback.");
+        }
+      } catch (e) {
+        console.error("Error fetching Unsplash image", e);
+      }
+    }
+
     // Check if the title is actually relevant to our context
     const slug = slugify(data.title, { lower: true, strict: true });
     const fileName = `${new Date().toISOString().split('T')[0]}-${slug}.mdx`;
@@ -110,6 +128,7 @@ async function generateNews() {
       category: data.category,
       excerpt: data.excerpt,
       date: new Date().toISOString(),
+      image: imageUrl,
       keywords: data.keywords,
       tags: [data.category],
       realSource: true

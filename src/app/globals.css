@@ -188,8 +188,9 @@ h1 {
 .card-image {
   width: 100%;
   aspect-ratio: 16 / 9;
-  background: #2a2a2a;
-  object-fit: cover;
+  background-color: #2a2a2a;
+  background-size: cover;
+  background-position: center;
 }
 
 .card-content {

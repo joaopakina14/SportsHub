@@ -10,6 +10,7 @@ export interface PostData {
   category: string;
   excerpt: string;
   date: string;
+  image?: string;
   content: string;
   keywords: string;
 }
