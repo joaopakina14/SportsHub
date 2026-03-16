@@ -5,37 +5,37 @@ import Script from 'next/script'
 
 export const metadata: Metadata = {
   title: {
-    default: 'SportsHub | As Melhores Notícias Desportivas do Mundo',
+    default: 'SportsHub | Notícias Desportivas em Tempo Real',
     template: '%s | SportsHub'
   },
-  description: 'O seu portal número um para notícias desportivas de última hora, análises profundas e resultados em direto. Gerado por IA avançada para cobertura total.',
-  keywords: ['desporto', 'notícias desportivas', 'futebol', 'basquetebol', 'ténis', 'gemini ai', 'blog desporto'],
+  description: 'O portal de notícias desportivas mais avançado do mundo. Cobertura total de Futebol, F1, NBA e muito mais, com análises geradas por IA em tempo real.',
+  keywords: ['notícias desportivas', 'futebol português', 'primeira liga', 'benfica', 'porto', 'sporting', 'desporto ao vivo', 'melhor portal desporto'],
   authors: [{ name: 'SportsHub AI' }],
-  metadataBase: new URL('https://sportshub-news.vercel.app'), // Placeholder URL
+  metadataBase: new URL('https://sportshub-news.vercel.app'),
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
-    title: 'SportsHub | Notícias Desportivas em Tempo Real',
+    title: 'SportsHub | Onde o Desporto Acontece Primeiro',
     description: 'Acompanhe as notícias desportivas mais recentes com a melhor cobertura do mundo.',
     url: 'https://sportshub-news.vercel.app',
     siteName: 'SportsHub',
-    locale: 'pt-PT',
+    images: [
+      {
+        url: '/og-image.jpg', // Imagem padrão se não houver notícia
+        width: 1200,
+        height: 630,
+        alt: 'SportsHub Portal',
+      },
+    ],
+    locale: 'pt_PT',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SportsHub | Notícias Desportivas em Tempo Real',
-    description: 'Acompanhe as notícias desportivas mais recentes com a melhor cobertura do mundo.',
-    creator: '@sportshub',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
+    title: 'SportsHub | Resumo Desportivo Global',
+    description: 'O portal de desporto mais avançado, agora com cobertura total por IA.',
+    images: ['/og-image.jpg'],
   },
 }
 

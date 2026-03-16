@@ -12,12 +12,13 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getPostBySlug(params.slug);
-  if (!post) return { title: 'Noticia Não Encontrada' };
+  if (!post) return { title: 'Notícia Não Encontrada' };
 
   const fullUrl = `https://sportshub-news.vercel.app/news/${params.slug}`;
+  const ogImage = post.image || 'https://sportshub-news.vercel.app/og-image.jpg';
 
   return {
-    title: `${post.title} | SportsHub`,
+    title: post.title,
     description: post.excerpt,
     keywords: post.keywords,
     alternates: {
@@ -29,14 +30,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: 'article',
       publishedTime: post.date,
       authors: ['SportsHub AI'],
-      images: post.image ? [{ url: post.image }] : [],
+      section: post.category,
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
       url: fullUrl,
+      siteName: 'SportsHub',
     },
     twitter: {
       card: 'summary_large_image',
       title: post.title,
       description: post.excerpt,
-      images: post.image ? [post.image] : [],
+      images: [ogImage],
     }
   };
 }
