@@ -137,6 +137,15 @@ async function generateNews() {
     fs.writeFileSync(path.join(postsDir, fileName), fileContent);
     console.log(`REAL NEWS GENERATED: ${fileName}`);
     
+    // Export metadata for GitHub Actions
+    const metadata = {
+      title: data.title,
+      slug: slug,
+      fileName: fileName,
+      url: `https://sports-news-theta.vercel.app/news/${slug}`
+    };
+    fs.writeFileSync(path.join(__dirname, "../news-metadata.json"), JSON.stringify(metadata));
+
   } catch (error) {
     console.error("Error generating news:", error);
     process.exit(1);
