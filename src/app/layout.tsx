@@ -11,14 +11,14 @@ export const metadata: Metadata = {
   description: 'O portal de notícias desportivas mais avançado do mundo. Cobertura total de Futebol, F1, NBA e muito mais, com análises geradas por IA em tempo real.',
   keywords: ['notícias desportivas', 'futebol português', 'primeira liga', 'benfica', 'porto', 'sporting', 'desporto ao vivo', 'melhor portal desporto'],
   authors: [{ name: 'SportsHub AI' }],
-  metadataBase: new URL('https://sportshub-news.vercel.app'),
+  metadataBase: new URL('https://sports-news-theta.vercel.app'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: 'SportsHub | Onde o Desporto Acontece Primeiro',
     description: 'Acompanhe as notícias desportivas mais recentes com a melhor cobertura do mundo.',
-    url: 'https://sportshub-news.vercel.app',
+    url: 'https://sports-news-theta.vercel.app',
     siteName: 'SportsHub',
     images: [
       {
@@ -48,8 +48,8 @@ export default function RootLayout({
     '@context': 'https://schema.org',
     '@type': 'Organization',
     'name': 'SportsHub',
-    'url': 'https://sportshub-news.vercel.app',
-    'logo': 'https://sportshub-news.vercel.app/logo.png',
+    'url': 'https://sports-news-theta.vercel.app',
+    'logo': 'https://sports-news-theta.vercel.app/logo.png',
   };
 
   return (

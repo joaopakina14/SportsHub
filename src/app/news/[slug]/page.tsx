@@ -14,8 +14,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getPostBySlug(params.slug);
   if (!post) return { title: 'Notícia Não Encontrada' };
 
-  const fullUrl = `https://sportshub-news.vercel.app/news/${params.slug}`;
-  const ogImage = post.image || 'https://sportshub-news.vercel.app/og-image.jpg';
+  const fullUrl = `https://sports-news-theta.vercel.app/news/${params.slug}`;
+  const ogImage = post.image || 'https://sports-news-theta.vercel.app/og-image.jpg';
 
   return {
     title: post.title,
@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           alt: post.title,
         },
       ],
-      url: fullUrl,
+      url: `https://sports-news-theta.vercel.app/news/${params.slug}`,
       siteName: 'SportsHub',
     },
     twitter: {

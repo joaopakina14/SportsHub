@@ -143,7 +143,7 @@ async function generateNews() {
       slug: slug,
       fileName: fileName,
       image: imageUrl,
-      url: `https://sportshub-news.vercel.app/news/${slug}`
+      url: `https://sports-news-theta.vercel.app/news/${slug}`
     };
     fs.writeFileSync(path.join(__dirname, "../news-metadata.json"), JSON.stringify(metadata));
 
