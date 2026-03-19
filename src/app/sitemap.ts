@@ -5,7 +5,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts();
   
   const postEntries = posts.map((post) => ({
-    url: `https://sportshub-news.vercel.app/news/${post.slug}`,
+    url: `https://sports-news-theta.vercel.app/news/${post.slug}`,
     lastModified: new Date(post.date),
     changeFrequency: 'daily' as const,
     priority: 0.7,
@@ -13,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     {
-      url: 'https://sportshub-news.vercel.app',
+      url: 'https://sports-news-theta.vercel.app',
       lastModified: new Date(),
       changeFrequency: 'always',
       priority: 1,

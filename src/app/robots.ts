@@ -5,8 +5,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: '/private/',
+      disallow: '/api/',
     },
-    sitemap: 'https://sportshub-news.vercel.app/sitemap.xml',
+    sitemap: 'https://sports-news-theta.vercel.app/sitemap.xml',
   };
 }

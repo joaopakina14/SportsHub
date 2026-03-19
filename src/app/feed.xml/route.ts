@@ -3,7 +3,7 @@ import { getAllPosts } from '@/lib/posts';
 export async function GET() {
   const posts = getAllPosts();
   
-  const siteUrl = 'https://sportshub-news.vercel.app';
+  const siteUrl = 'https://sports-news-theta.vercel.app';
   
   const rssItems = posts.slice(0, 15).map((post) => {
     return `
