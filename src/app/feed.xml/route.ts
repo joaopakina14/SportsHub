@@ -13,7 +13,7 @@ export async function GET() {
         <guid isPermaLink="true">${siteUrl}/news/${post.slug}</guid>
         <pubDate>${new Date(post.date).toUTCString()}</pubDate>
         <description><![CDATA[${post.excerpt}]]></description>
-        ${post.image ? `<media:content url="${post.image}" medium="image" />\n        <enclosure url="${post.image}" length="0" type="image/jpeg" />` : ''}
+        ${post.image ? `<media:content url="${post.image.replace(/&/g, '&amp;')}" medium="image" />\n        <enclosure url="${post.image.replace(/&/g, '&amp;')}" length="0" type="image/jpeg" />` : ''}
       </item>
     `;
   }).join('');
